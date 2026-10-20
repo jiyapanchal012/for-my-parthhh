@@ -1,639 +1,409 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Cute Love Story 💗</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Someone Special 💗</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap');
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+*{box-sizing:border-box}
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 18px;
-      overflow-x: hidden;
-      font-family: 'Poppins', sans-serif;
-      color: #8f214e;
-      background: linear-gradient(135deg, #ffe0ec, #ffc2d8, #fce7f3);
-    }
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#ffd6e7,#ffe8f1,#ffc2dc);
+    overflow-x:hidden;
+    color:#71364f;
+    padding:18px;
+}
 
-    #hearts {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
-    }
+.heart{
+    position:fixed;
+    bottom:-40px;
+    color:#ff5c9a;
+    animation:floatUp 7s linear infinite;
+    pointer-events:none;
+    z-index:0;
+}
 
-    .heart {
-      position: absolute;
-      bottom: -50px;
-      animation: floatUp linear forwards;
-    }
+@keyframes floatUp{
+    to{transform:translateY(-115vh) rotate(360deg);opacity:0}
+}
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) rotate(0);
-        opacity: 0;
-      }
+.card{
+    display:none;
+    position:relative;
+    z-index:2;
+    width:min(100%,460px);
+    padding:30px 22px;
+    background:rgba(255,255,255,.78);
+    border:2px solid rgba(255,255,255,.9);
+    border-radius:28px;
+    box-shadow:0 15px 45px #d45b8830;
+    text-align:center;
+    animation:pop .35s ease;
+}
 
-      15% {
-        opacity: 1;
-      }
+.card.active{display:block}
 
-      100% {
-        transform: translateY(-115vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
+@keyframes pop{
+    from{opacity:0;transform:scale(.92)}
+    to{opacity:1;transform:scale(1)}
+}
 
-    .card {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 420px);
-      padding: 32px 23px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, .9);
-      border-radius: 30px;
-      background: rgba(255, 255, 255, .84);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 20px 60px rgba(177, 54, 103, .18);
-      animation: appear .4s ease;
-    }
+h1{
+    font-family:'Pacifico',cursive;
+    color:#e74783;
+    font-size:clamp(25px,7vw,35px);
+    margin:8px 0 16px;
+}
 
-    .hidden {
-      display: none !important;
-    }
+p{line-height:1.8;font-size:15px}
 
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(14px) scale(.96);
-      }
+.emoji{font-size:58px;margin:8px 0}
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
+button{
+    font-family:inherit;
+    font-weight:600;
+    font-size:14px;
+    border:0;
+    border-radius:30px;
+    padding:12px 22px;
+    margin:7px 4px;
+    cursor:pointer;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+    transition:transform .15s,box-shadow .15s;
+}
 
-    .emoji {
-      font-size: 57px;
-      margin-bottom: 12px;
-      animation: heartbeat 1.4s infinite;
-    }
+button:active{transform:scale(.96)}
 
-    @keyframes heartbeat {
+.yes,.option,.main-btn{
+    color:white;
+    background:linear-gradient(135deg,#ff70a6,#e94383);
+    box-shadow:0 5px 14px #ed579140;
+}
 
-      0%,
-      100% {
-        transform: scale(1);
-      }
+.no{
+    background:#fff;
+    color:#e74783;
+    border:2px solid #ff8db7;
+    box-shadow:0 4px 12px #e7478320;
+}
 
-      15% {
-        transform: scale(1.12);
-      }
+.button-row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:20px;
+}
 
-      30% {
-        transform: scale(1);
-      }
+.plan-buttons{
+    position:relative;
+    height:170px;
+    margin-top:15px;
+    border-radius:18px;
+    background:#fff3f8;
+    overflow:hidden;
+    touch-action:pan-y;
+}
 
-      45% {
-        transform: scale(1.08);
-      }
-    }
+.plan-buttons .yes{
+    position:absolute;
+    left:25%;
+    top:55px;
+    transform:translateX(-50%);
+}
 
-    h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: clamp(26px, 7vw, 34px);
-      font-weight: 400;
-      line-height: 1.5;
-      margin-bottom: 12px;
-    }
+#runawayBtn{
+    position:absolute;
+    left:72%;
+    top:55px;
+    transform:translateX(-50%);
+    z-index:5;
+    white-space:nowrap;
+    transition:left .07s linear,top .07s linear;
+    will-change:left,top;
+}
 
-    h2 {
-      font-size: 17px;
-      line-height: 1.7;
-      color: #a52f61;
-      margin: 16px 0 20px;
-    }
+.options{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:20px 0;
+}
 
-    p {
-      font-size: 14px;
-      line-height: 1.9;
-      color: #a05c78;
-      margin-bottom: 21px;
-    }
+.options button{min-width:95px}
 
-    .love-text {
-      color: #9c496c;
-      line-height: 1.95;
-    }
+.message{
+    margin-top:14px;
+    color:#d63877;
+    font-weight:600;
+    min-height:26px;
+}
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+.letter{
+    background:#fff4f8;
+    border-radius:18px;
+    padding:18px;
+    line-height:1.9;
+    text-align:left;
+    font-size:14px;
+}
 
-    button {
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 13px 21px;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-    }
+.small{font-size:12px;color:#a65b7a}
 
-    .yes-btn,
-    .option-btn {
-      background: linear-gradient(135deg, #ff4f87, #ff78a5);
-      color: white;
-      box-shadow: 0 7px 18px rgba(255, 79, 135, .22);
-      transition: transform .2s;
-    }
-
-    .yes-btn:hover,
-    .option-btn:hover {
-      transform: translateY(-3px);
-    }
-
-    .no-btn {
-      background: white;
-      color: #df5685;
-      border: 1px solid #ffd0df;
-    }
-
-    .options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 11px;
-    }
-
-    .option-btn {
-      width: 100%;
-      padding: 14px 6px;
-      font-size: 15px;
-    }
-
-    .option-btn:last-child {
-      grid-column: 1 / -1;
-    }
-
-    .message {
-      margin-top: 20px;
-      padding: 15px;
-      background: #fff0f6;
-      border-radius: 18px;
-      color: #b62d65;
-      font-size: 14px;
-      line-height: 1.8;
-      animation: appear .4s ease;
-    }
-
-    .small-heart {
-      color: #ff4f87;
-      margin-top: 20px;
-      font-size: 13px;
-    }
-
-    .back-btn {
-      margin-top: 18px;
-      padding: 9px 14px;
-      background: transparent;
-      color: #ba5078;
-      font-size: 13px;
-    }
-
-    .plan-buttons {
-      position: relative;
-      min-height: 160px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .runaway-btn {
-      position: absolute;
-      left: 50%;
-      top: 78px;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      z-index: 5;
-      touch-action: none;
-      user-select: none;
-      -webkit-user-select: none;
-      transition: left .16s ease, top .16s ease;
-    }
-
-    #page5 {
-      overflow: visible;
-    }
-
-    .letter {
-      background: #fff3f8;
-      border: 1px dashed #ff91b6;
-      border-radius: 20px;
-      padding: 18px;
-      margin: 16px 0 22px;
-      text-align: left;
-      color: #a0456b;
-      line-height: 1.9;
-      font-size: 14px;
-    }
-
-    .letter-title {
-      text-align: center;
-      font-size: 20px;
-      margin-bottom: 12px;
-      color: #e34f88;
-      font-family: 'Pacifico', cursive;
-    }
-
-    @media (max-width: 380px) {
-      .card {
-        padding: 27px 17px;
-      }
-
-      p,
-      .love-text {
-        font-size: 13px;
-      }
-
-      h2 {
-        font-size: 15px;
-      }
-    }
-  </style>
+@media(max-width:380px){
+    .card{padding:24px 15px}
+    button{padding:11px 17px}
+    .plan-buttons{height:180px}
+}
+</style>
 </head>
 
 <body>
 
-  <div id="hearts"></div>
-
-  <!-- PAGE 1: LOVE QUESTION -->
-  <section class="card" id="page1">
-    <div class="emoji">💌</div>
-    <h1>Do you love me?</h1>
-    <p>I have a little question for you... 🥹💕</p>
-
-    <div class="buttons">
-      <button class="yes-btn" onclick="showPage('page2')">Yes 💖</button>
-      <button class="no-btn" onclick="showPage('page3')">No 💔</button>
+<section class="card active" id="page1">
+    <div class="emoji">💗🥹</div>
+    <h1>Do You Love Me?</h1>
+    <p>Ek chhota sa question hai... dil se answer dena! 🫶</p>
+    <div class="button-row">
+        <button class="yes" onclick="showPage('page2')">Yes, I do 💖</button>
+        <button class="no" onclick="showPage('page3')">No 🙈</button>
     </div>
+</section>
 
-    <div class="small-heart">Made with ♥ just for you</div>
-  </section>
-
-  <!-- PAGE 2: LOVE PERCENTAGE -->
-  <section class="card hidden" id="page2">
-    <div class="emoji">🥰</div>
-    <h1>How much?</h1>
-    <p>Choose how much you love me! 💗</p>
-
+<section class="card" id="page2">
+    <div class="emoji">🥰💞</div>
+    <h1>How Much?</h1>
+    <p>Mujhse kitna pyaar karte ho ji? 😚</p>
     <div class="options">
-      <button class="option-btn" onclick="selectLove('25%')">25% 💕</button>
-      <button class="option-btn" onclick="selectLove('50%')">50% 💗</button>
-      <button class="option-btn" onclick="selectLove('75%')">75% 💓</button>
-      <button class="option-btn" onclick="selectLove('100%')">100% ❤️</button>
-      <button class="option-btn" onclick="selectLove('Infinity ♾️')">Infinity ♾️</button>
+        <button class="option" onclick="percentage(25)">25% 🥺</button>
+        <button class="option" onclick="percentage(50)">50% 😒</button>
+        <button class="option" onclick="percentage(75)">75% 😭</button>
+        <button class="option" onclick="showPage('page4')">100% 💗</button>
+        <button class="option" onclick="showPage('page4')">Infinity ♾️</button>
     </div>
+    <div class="message" id="percentMsg"></div>
+</section>
 
-    <div id="loveMessage" class="message hidden"></div>
-    <button class="back-btn" onclick="showPage('page1')">← Go back</button>
-  </section>
-
-  <!-- PAGE 3: BYE -->
-  <section class="card hidden" id="page3">
+<section class="card" id="page3">
     <div class="emoji">🥺💔</div>
-    <h1>Okay, bye then!</h1>
-    <p>I'll be here if you change your mind... 🥹</p>
-    <button class="yes-btn" onclick="showPage('page1')">Wait! 💌</button>
-    <div class="small-heart">You sure? 🥺</div>
-  </section>
+    <h1>Okay, Bye Then!</h1>
+    <p>Achha ji... ab main bhi aapse baat nahi karti! 😤</p>
+    <button class="main-btn" onclick="showPage('page1')">Ruko, mazaak tha! 💗</button>
+</section>
 
-  <!-- PAGE 4: EMOTIONAL LOVE -->
-  <section class="card hidden" id="page4">
-    <div class="emoji">🥹💗</div>
+<section class="card" id="page4">
+    <div class="emoji">🥹❤️</div>
     <h1>You're My Everything</h1>
-
-    <p class="love-text">
-      Tum meri life ka woh special person ho,
-      jisse baat karke mere face par smile aa jaati hai. ❤️
-      <br><br>
-      Mujhe nahi pata future mein kya hoga,
-      bas itna pata hai ki tumhare saath bitaya
-      har moment mere liye special hai. 🫶🏻
-      <br><br>
-      Tumhari smile, tumhari baatein aur tumhara saath
-      mere liye bahut precious hai. 💕
-      <br><br>
-      Ek chhoti si wish hai meri...
-    </p>
-
-    <h2>Aap meri ek ichha puri karoge? 🥺</h2>
-
-    <div class="buttons">
-      <button class="yes-btn" onclick="showPage('page5')">Yes, bolo na 💖</button>
-      <button class="no-btn" onclick="wishNo()">No 🙈</button>
+    <p>Tum meri smile ki wajah ho, meri favourite notification ho, aur mere din ka sabse pyara part ho. 💕</p>
+    <p><b>Aap meri ek ichha puri karoge?</b> 🥺👉👈</p>
+    <div class="button-row">
+        <button class="yes" onclick="showPage('page5')">Haan ji 💖</button>
+        <button class="no" onclick="document.getElementById('wishMsg').textContent='Itni cute request ko mana kaise karoge? 🥺💗'">Nahi 🙈</button>
     </div>
+    <div class="message" id="wishMsg"></div>
+</section>
 
-    <div id="wishNoMessage" class="message hidden">
-      Please naaa 🥺 ek chhoti si wish hai meri! 💗
+<section class="card" id="page5">
+    <div class="emoji">🌷🎬</div>
+    <h1>Ek Cute Si Wish!</h1>
+    <p>Kal mere saath bahar ghoomne ya movie dekhne chale? 🥹💗</p>
+    <p class="small">Yes dabao... No dabane ka try bhi mat karna 😈</p>
+
+    <div class="plan-buttons" id="planArea">
+        <button class="yes" onclick="showPage('page6')">Yes, chalte hain! 💕</button>
+        <button class="no" id="runawayBtn" type="button">No 🙃</button>
     </div>
-  </section>
+    <div class="message" id="runMsg">No pakadne ki koshish karo! 😂💨</div>
+</section>
 
-  <!-- PAGE 5: DATE INVITATION -->
-  <section class="card hidden" id="page5">
-    <div class="emoji">🥳💝</div>
-    <h1>Wahhh! Finally! 😍</h1>
+<section class="card" id="page6">
+    <div class="emoji">🥳💐</div>
+    <h1>Yayyy! It's a Date!</h1>
+    <p>Ab pakka promise! Kal ka plan cancel nahi hoga. Main yaad dila dungi! 😌💕</p>
+    <button class="main-btn" onclick="showPage('page7')">Ek aur surprise? 🎁</button>
+</section>
 
-    <p class="love-text">
-      Aapne haan bol hi diya! ❤️
-      <br><br>
-      Ab toh meri wish puri karni hi padegi! Hehe 🤭💕
-    </p>
-
-    <div class="emoji">🎬🌷</div>
-    <h2>Toh kal bahar ghoomne chalein ya movie dekhne? 🍿</h2>
-    <p>Just you and me? 🥹❤️</p>
-
-    <div class="plan-buttons">
-      <button class="yes-btn" onclick="showPage('page6')">
-        Yes, chalte hain! 💖
-      </button>
-      <button class="no-btn runaway-btn" id="runawayBtn" type="button">
-        No 🙈
-      </button>
+<section class="card" id="page7">
+    <div class="emoji">😈🎀</div>
+    <h1>Cute Si Dhamki!</h1>
+    <p>Agar kal mujhe time nahi diya na... toh sapno mein aakar poori raat pareshan karungi! 😂</p>
+    <p>Phir extra hugs aur extra kisses ka fine bhi lagega. Samjhe? 😚💋</p>
+    <div class="button-row">
+        <button class="yes" onclick="showPage('page8')">Ji, madam! 🫡</button>
+        <button class="no" onclick="showPage('page8')">Aur dhamki do 😂</button>
     </div>
-  </section>
+</section>
 
-  <!-- PAGE 6: DATE CONFIRMED -->
-  <section class="card hidden" id="page6">
-    <div class="emoji">🥰💐</div>
-    <h1>Yayyy! It's a Date! 💖</h1>
-
-    <p class="love-text">
-      Okay done, confirm! 🥳❤️
-      <br><br>
-      Ab toh kal jaana hi padega! 😂💕
-      <br><br>
-      Get ready for our special day.
-      Tum, main aur dher saari beautiful memories! 🫶🏻
-      <br><br>
-      <strong>Kal milte hain, my favourite person! 😘</strong>
-    </p>
-
-    <div class="emoji">💑✨</div>
-    <button class="yes-btn" onclick="showPage('page7')">Ek aur surprise? 🎁</button>
-  </section>
-
-  <!-- PAGE 7: CUTE WARNING -->
-  <section class="card hidden" id="page7">
-    <div class="emoji">😼💗</div>
-    <h1>Ek Cute Si Dhamki!</h1>
-
-    <p class="love-text">
-      Suno ji, meri baat dhyaan se sun lo! 🤨💕
-      <br><br>
-      Agar kal mujhe time nahi diya na...
-      <br><br>
-      Toh main tumhare sapno mein aa kar
-      tumhe poori raat pareshan karungi! 👻😂
-      <br><br>
-      Aur agar phir bhi nahi maane...
-      <br>
-      Toh extra hugs aur extra kisses ka fine lagega! 🤭💋
-      <br><br>
-      <strong>Samajh gaye na, mere payare parthuu ? 😌❤️</strong>
-    </p>
-
-    <div class="buttons">
-      <button class="yes-btn" onclick="showPage('page8')">
-        Ji madam ji! 🫡💕
-      </button>
-      <button class="no-btn" onclick="showPage('page9')">
-        Aur dhamki do 😂
-      </button>
-    </div>
-  </section>
-
-  <!-- PAGE 8: SECRET LOVE LETTER -->
-  <section class="card hidden" id="page8">
-    <div class="emoji">💌🌷</div>
-    <h1>A Secret For You</h1>
-
+<section class="card" id="page8">
+    <div class="emoji">💌🌹</div>
+    <h1>A Little Love Letter</h1>
     <div class="letter">
-      <div class="letter-title">Dear Favourite Person 💗</div>
-
-      Pata hai, tumse baat karna meri favourite
-      habit ban gayi hai. 🥹
-      <br><br>
-      Tumhara ek chhota sa message bhi mere face
-      par smile la sakta hai.
-      <br><br>
-      Main tumse perfect hone ki expectation nahi
-      rakhti/rakhta. Bas chahti/chahta hoon ki hum
-      ek dusre ko samjhein, ek dusre ke liye time
-      nikalein aur chhoti-chhoti khushiyan share karein. 🫶🏻
-      <br><br>
-      <strong>You are special to me, more than words can say. ❤️</strong>
-      <br><br>
-      Always keep smiling, meri jaan! 💕
+        Mere favourite person ke naam 💗<br><br>
+        Shayad main hamesha perfect words na bol paun, par tum mere liye bahut special ho. Tumhari smile, tumhari baatein aur tumhara saath mere liye precious hai.<br><br>
+        Bas aise hi mera haath pakad kar rehna. Baaki sab hum saath mein handle kar lenge. 🫶<br><br>
+        Forever tumhari favourite person! 💖
     </div>
+    <button class="main-btn" onclick="showPage('page9')">One last thing... 🥹</button>
+</section>
 
-    <button class="yes-btn" onclick="showPage('page9')">
-      Awww, I love it! 🥹
-    </button>
-  </section>
-
-  <!-- PAGE 9: FINAL CUTE PROMISE -->
-  <section class="card hidden" id="page9">
-    <div class="emoji">🐻💞</div>
+<section class="card" id="page9">
+    <div class="emoji">🤞💝</div>
     <h1>Last One, Promise!</h1>
+    <p>Chahe kabhi misunderstanding ho jaye, hum baat karke solve karenge. Ek dusre ke liye time nikalenge aur bina bataye naraz nahi rahenge. 🥹</p>
+    <button class="yes" onclick="showPage('page10')">Pakka Promise! 💗</button>
+</section>
 
-    <p class="love-text">
-      Ek last baat bolun? 🥺
-      <br><br>
-      Mujhse gussa ho jaana, meri taang kheench lena,
-      mujhe tease bhi kar lena...
-      <br><br>
-      Par jab bhi possible ho, baat karke
-      misunderstandings solve kar lena. ❤️
-      <br><br>
-      Kyunki mere liye tumhare saath ki chhoti-chhoti
-      khushiyan bahut special hain. 🌷
-      <br><br>
-      <strong>Ab ek cute si smile do! 😚</strong>
-    </p>
+<section class="card" id="page10">
+    <div class="emoji">💖🧸🎉</div>
+    <h1>Yeh Hui Na Baat!</h1>
+    <p>Ab ek big wala hug pending hai! 🤗</p>
+    <p>I love youuuuu! 💋💕</p>
+    <button class="main-btn" onclick="showPage('page1')">Start Again 🔁</button>
+</section>
 
-    <div class="buttons">
-      <button class="yes-btn" onclick="showPage('page10')">
-        Pakka Promise! 🫶🏻
-      </button>
-    </div>
-  </section>
-
-  <!-- PAGE 10: HAPPY ENDING -->
-  <section class="card hidden" id="page10">
-    <div class="emoji">🎀💖</div>
-    <h1>The End? Nooo!</h1>
-
-    <p class="love-text">
-      Hamari cute si story toh abhi shuru hui hai! 🥹💕
-      <br><br>
-      More smiles, more memories, more silly jokes
-      aur bahut saara pyaar. 🌷
-      <br><br>
-      <strong>You + Me + Happy Moments = 💗♾️</strong>
-      <br><br>
-      Ab jao aur smile karo, cutie! 😘
-    </p>
-
-    <button class="yes-btn" onclick="showPage('page1')">
-      Relive Our Love Story 💌
-    </button>
-
-    <div class="small-heart">Made with lots of love ♥</div>
-  </section>
-
-  <script>
-    // PAGE NAVIGATION
-    function showPage(pageId) {
-      document.querySelectorAll('.card').forEach(card => {
-        card.classList.add('hidden');
-      });
-
-      document.getElementById(pageId).classList.remove('hidden');
-
-      document.getElementById('loveMessage').classList.add('hidden');
-      document.getElementById('wishNoMessage').classList.add('hidden');
-
-      resetNoButton();
-      createHearts(4);
-    }
-
-    // LOVE PERCENTAGE
-    function selectLove(value) {
-      const message = document.getElementById('loveMessage');
-
-      const messages = {
-        '25%': 'Bas 25%? 🥺 Mera dil thoda sad ho gaya... Thoda aur pyaar nahi mil sakta? 💔',
-        '50%': 'Sirf aadha pyaar? 🥹 Baaki aadha bhi de do na! Main wait karungi/karunga. 💗',
-        '75%': 'Awww, 75%! 🥺 Bas thoda sa aur pyaar mil jaata toh main sabse khush hoti/hota! 💕'
-      };
-
-      if (value === '100%' || value === 'Infinity ♾️') {
-        showPage('page4');
-        createHearts(20);
-        return;
-      }
-
-      message.innerHTML =
-        '<strong>You chose ' + value + '</strong><br><br>' +
-        messages[value];
-
-      message.classList.remove('hidden');
-    }
-
-    // WISH NO
-    function wishNo() {
-      document.getElementById('wishNoMessage').classList.remove('hidden');
-      createHearts(6);
-    }
-
-    // RUNAWAY NO BUTTON
-    const runawayBtn = document.getElementById('runawayBtn');
-    const planArea = document.querySelector('#page5 .plan-buttons');
-
-    function moveNoButton(event) {
-      if (event) event.preventDefault();
-
-      const area = planArea.getBoundingClientRect();
-      const btn = runawayBtn.getBoundingClientRect();
-
-      const maxX = Math.max(0, area.width - btn.width);
-      const maxY = Math.max(0, area.height - btn.height);
-
-      let x, y;
-      const oldX = runawayBtn.offsetLeft;
-      const oldY = runawayBtn.offsetTop;
-
-      // Har baar nayi jagah, purani jagah se door
-      for (let i = 0; i < 40; i++) {
-        x = Math.random() * maxX;
-        y = Math.random() * maxY;
-
-        if (Math.hypot(x - oldX, y - oldY) > 100) break;
-      }
-
-      runawayBtn.style.transition = 'none';
-      runawayBtn.style.transform = 'none';
-      runawayBtn.style.left = x + 'px';
-      runawayBtn.style.top = y + 'px';
-
-      createHearts(3);
-    }
-
-    runawayBtn.addEventListener('pointerenter', moveNoButton);
-    runawayBtn.addEventListener('pointerdown', moveNoButton);
-    runawayBtn.addEventListener('click', moveNoButton);
-    runawayBtn.addEventListener('touchstart', moveNoButton, {
-      passive: false
+<script>
+function showPage(pageId){
+    document.querySelectorAll('.card').forEach(card=>{
+        card.classList.remove('active');
     });
+    document.getElementById(pageId).classList.add('active');
 
+    const msg=document.getElementById('runMsg');
+    if(msg) msg.textContent='No pakadne ki koshish karo! 😂💨';
 
-    // Desktop: move when cursor approaches
-    runawayBtn.addEventListener('pointerenter', moveNoButton);
-    runawayBtn.addEventListener('pointerdown', moveNoButton);
-    runawayBtn.addEventListener('click', moveNoButton);
+    setTimeout(resetNoButton,50);
+}
 
-    // Mobile: dodge touch
-    runawayBtn.addEventListener('touchstart', moveNoButton, {
-      passive: false
-    });
+function percentage(value){
+    const msg=document.getElementById('percentMsg');
 
-    // FLOATING HEARTS
-    function createHearts(count = 1) {
-      const container = document.getElementById('hearts');
+    if(value===25){
+        msg.textContent='Bas 25%? Mera dil toot gaya! 🥺💔';
+    }else if(value===50){
+        msg.textContent='Sirf aadha? Baaki aadha kahan hai ji? 😭';
+    }else{
+        msg.textContent='75%? Mujhe full wala pyaar chahiye! 🥹💗';
+    }
+}
 
-      for (let i = 0; i < count; i++) {
-        const heart = document.createElement('span');
+function createHearts(count=1){
+    for(let i=0;i<count;i++){
+        const heart=document.createElement('div');
+        heart.className='heart';
+        heart.textContent=['💗','💕','💖','💘'][Math.floor(Math.random()*4)];
+        heart.style.left=Math.random()*100+'vw';
+        heart.style.fontSize=(18+Math.random()*20)+'px';
+        heart.style.animationDuration=(3+Math.random()*3)+'s';
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),7000);
+    }
+}
 
-        heart.className = 'heart';
-        heart.textContent = ['💗', '💕', '💖', '💘', '❤️'][
-          Math.floor(Math.random() * 5)
-        ];
+setInterval(()=>createHearts(1),700);
 
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.fontSize = (16 + Math.random() * 20) + 'px';
-        heart.style.animationDuration = (4 + Math.random() * 5) + 's';
+const runawayBtn=document.getElementById('runawayBtn');
+const planArea=document.getElementById('planArea');
 
-        container.appendChild(heart);
-        heart.addEventListener('animationend', () => heart.remove());
-      }
+let lastMove=0;
+
+function moveNoButton(event){
+    if(event) event.preventDefault();
+
+    const now=performance.now();
+
+    // Bahut fast repeat hone par bhi button ko turant move karao
+    if(now-lastMove<35) return;
+    lastMove=now;
+
+    const maxX=Math.max(0,planArea.clientWidth-runawayBtn.offsetWidth-6);
+    const maxY=Math.max(0,planArea.clientHeight-runawayBtn.offsetHeight-6);
+
+    const oldX=runawayBtn.offsetLeft;
+    const oldY=runawayBtn.offsetTop;
+
+    let x=0,y=0;
+
+    // Nayi position purani position se kaafi door rakho
+    for(let i=0;i<35;i++){
+        x=3+Math.random()*Math.max(0,maxX-3);
+        y=3+Math.random()*Math.max(0,maxY-3);
+
+        if(Math.hypot(x-oldX,y-oldY)>65) break;
     }
 
-    // BACKGROUND ANIMATION
-    setInterval(() => createHearts(), 800);
-  </script>
+    runawayBtn.style.left=x+'px';
+    runawayBtn.style.top=y+'px';
+    runawayBtn.style.transform='none';
+
+    const msg=document.getElementById('runMsg');
+    if(msg) msg.textContent=['Hehe, pakad ke dikhao! 😂','Nooo! Main bhaag gayi! 💨','Try again, cutie! 😜'][Math.floor(Math.random()*3)];
+
+    createHearts(2);
+}
+
+function resetNoButton(){
+    if(!runawayBtn || !planArea) return;
+    runawayBtn.style.left='72%';
+    runawayBtn.style.top='55px';
+    runawayBtn.style.transform='translateX(-50%)';
+}
+
+// Desktop: cursor button ke paas aate hi bhaage
+runawayBtn.addEventListener('pointerenter',moveNoButton);
+
+// Mobile: finger screen par touch hote hi button ki proximity check karo.
+// Touch ke neeche button ho ya uske paas ho, button turant bhaagega.
+document.addEventListener('touchstart',function(event){
+    if(!document.getElementById('page5').classList.contains('active')) return;
+
+    const touch=event.touches[0];
+    if(!touch) return;
+
+    const rect=runawayBtn.getBoundingClientRect();
+
+    const nearX=touch.clientX>=rect.left-85 && touch.clientX<=rect.right+85;
+    const nearY=touch.clientY>=rect.top-85 && touch.clientY<=rect.bottom+85;
+
+    if(nearX && nearY){
+        moveNoButton(event);
+    }
+},{passive:false});
+
+// Mobile: finger slide karke paas laaye toh bhi bhaage
+document.addEventListener('touchmove',function(event){
+    if(!document.getElementById('page5').classList.contains('active')) return;
+
+    const touch=event.touches[0];
+    if(!touch) return;
+
+    const rect=runawayBtn.getBoundingClientRect();
+
+    const nearX=touch.clientX>=rect.left-95 && touch.clientX<=rect.right+95;
+    const nearY=touch.clientY>=rect.top-95 && touch.clientY<=rect.bottom+95;
+
+    if(nearX && nearY){
+        moveNoButton(event);
+    }
+},{passive:false});
+
+// Click/tap hone se pehle bhi bach kar bhaage
+runawayBtn.addEventListener('pointerdown',moveNoButton);
+runawayBtn.addEventListener('click',moveNoButton);
+runawayBtn.addEventListener('touchstart',moveNoButton,{passive:false});
+</script>
 
 </body>
-
 </html>
